@@ -5,8 +5,9 @@ Trip companion app. Manage costs, bookings, flights and people.
 # quick start
 
 1. Run docker-compose up in the main project directory & wait to finish
-2. Go to http://localhost:8000/login
-3. Log in using username: rares and password:rarespassword
+2. Go to http://localhost:8000/register and create your account
+3. Go to http://localhost:8000/login and login
+4. You can now read, create, update and delete trips, cities, flights, bookings and members
 
 # api
 
