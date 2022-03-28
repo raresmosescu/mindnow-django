@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'index' %}">
+            <div class="mt-2">
+                <h5>Back to: All Trips</h5>
+            </div>
+        </a>
+        <div>
+            <h2>Create a new trip</h2>
+        </div>
+        <form action="" method="post">{% csrf_token %}
+            {{form}}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+
+    
+{% endblock content %}

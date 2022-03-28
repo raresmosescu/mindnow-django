@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-2">
+            <h2>All trips <a class="btn p-2 bg-primary text-white" href="{% url 'trip_create' %}">Start a new trip</a></h2>            
+        </div>
+        <p>Welcome, {{ user.username }}. Ready for your new adventure?</p>
+
+
+        {% if usertrips %}
+            {% for usertrip in usertrips %}
+            <div class="card">
+                <span id="trip-{{usertrip.trip.id}}">
+                    <a href="{% url 'trip_details' trip_id=usertrip.trip.id %}"><h3>{{usertrip.trip.name}}</h3></a>
+                    <p>
+                    <span class="date">Created at {{usertrip.trip.created_at}}</span> 
+                        by <b>{{usertrip.trip.created_by.username}}</b>
+                        </p>
+                    
+                </span>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>You're not in any Trip yet but you can create a new one.</p>
+        {% endif %}
+    </div>
+
+
+    
+{% endblock content %}

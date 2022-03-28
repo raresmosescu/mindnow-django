@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'trip_details' trip_id=trip.id %}">
+            <div class="mt-2">
+                <h5>Back to: {{trip.name}}</h5>
+            </div>
+        </a>
+        <div>
+            <h2>Flight from 
+                <a href="{% url 'city_details' trip_id=trip.id city_id=flight.from_city.id %}">{{flight.from_city}}</a> 
+                to 
+                <a href="{% url 'city_details' trip_id=trip.id city_id=flight.to_city.id %}">{{flight.to_city}}</a>
+            </h2>
+        </div>
+        
+    </div>
+
+
+    
+{% endblock content %}

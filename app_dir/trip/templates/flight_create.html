@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'trip_details' trip_id=trip.id %}">
+            <div class="mt-2">
+                <h5>Back to: {{trip.name}}</h5>
+            </div>
+        </a>
+        <div>
+            <h2>Add a new flight</h2>
+        </div>
+
+        <form action="" method="post">{% csrf_token %}
+            {{form}}
+            <input type="submit" value="Save">
+        </form>
+        
+    </div>
+
+
+    
+{% endblock content %}

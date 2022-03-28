@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        {% if city %}
+        {% comment %} Editing city {% endcomment %}
+        <a href="{% url 'city_details' trip_id=trip.id city_id=city.id %}">
+            <div class="mt-2">
+                <h5>Back to: {{city.name}}</h5>
+            </div>
+        </a>                        
+        {% else %}
+        {% comment %} Creating new city {% endcomment %}
+        <a href="{% url 'trip_details' trip_id=trip.id %}">
+            <div class="mt-2">
+                <h5>Back to: {{trip.name}}</h5>
+            </div>
+        </a> 
+        {% endif %}
+
+        <div>
+            {% if city %}
+                <h2>Edit city</h2>
+            {% else %}
+                <h2>Add a new city</h2>
+            {% endif %}
+        </div>
+    
+        <form action="" method="post">{% csrf_token %}
+            {{form}}
+            <input type="submit" value="Save">
+        </form>
+
+    </div>
+
+
+    
+{% endblock content %}

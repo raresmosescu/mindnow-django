@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'trip_details' trip_id=trip.id %}">
+            <div class="mt-2">
+                <h5>Back to: {{trip.name}}</h5>
+            </div>
+        </a>
+        <div>
+            <h2>
+                {{city.name}} 
+                <a class="btn p-2 btn-dark" href="{% url 'city_edit' trip_id=trip.id city_id=city.id %}">Edit City</a>
+                <a class="btn p-2 btn-outline-danger" href="{% url 'city_delete' trip_id=trip.id city_id=city.id %}">Delete City</a>
+            </h2>
+        </div>
+
+        
+        <div class="mb-2 mt-5">
+            <h4 class=>Bookings <a class="btn p-2 bg-primary text-white " href="{% url 'booking_create' trip_id=trip.id city_id=city.id %}">Add booking</a></h4>
+        </div>
+
+        {% for b in bookings %}
+        <div class="card">
+            <span id="b-{{b.id}}">
+                <a href="{% url 'booking_details' trip_id=trip.id city_id=city.id b_id=b.id %}">
+                    <span class="h5">
+                        {{b.location_name}}
+                    </span>
+                </a>
+                <a href="{% url 'booking_delete' trip_id=trip.id city_id=city.id b_id=b.id %}">
+                    <span class="btn btn-outline-secondary float-right btn-sm">Delete</span>
+                </a>
+                <a href="{% url 'booking_edit' trip_id=trip.id city_id=city.id b_id=b.id %}">
+                    <span class="btn btn-secondary float-right btn-sm mr-2">Edit Booking</span>
+                </a>  
+                <p>
+                    <span class="date">
+                        Check-in {{b.check_in}}
+                    </span> 
+                </p>
+                <p>
+                    Cost €{{b.cost}}
+                </p> 
+                
+            </span>
+        </div>
+        {% endfor %}
+
+
+        <div class="mb-2 mt-5">
+            <h4>Flights</h4>
+        </div>
+
+        {% for f in flights %}
+        <div class="card">
+            <span id="f-{{f.id}}">
+                <a href="{% url 'flight_details' trip_id=trip.id city_id=city.id f_id=f.id %}">
+                    <span class="h5">
+                        From {{f.from_city.name}} to {{f.to_city.name}} ({{f.airline_name}})
+                    </span>
+                </a>
+                <a href="{% url 'flight_delete' trip_id=trip.id f_id=f.id %}">
+                    <span class="btn btn-outline-secondary float-right btn-sm">Delete</span>
+                </a>
+                <a href="{% url 'flight_edit' trip_id=trip.id f_id=f.id %}">
+                    <span class="btn btn-secondary float-right btn-sm mr-2">Edit Flight</span>
+                </a>  
+                <p>
+                    <span class="date">
+                        Takes-off on {{f.departure_date}} {{f.departure_time}} 
+                        <br>
+                        Scheduled landing on {{f.arrival_date}} {{f.arrival_time}}
+                    </span>
+                </p>
+                <p>
+                    Ticket cost: €{{f.cost}}
+                </p>
+            </span>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+    
+{% endblock content %}
